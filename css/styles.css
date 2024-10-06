@@ -795,7 +795,8 @@
   
     .header-action-btn { position: relative; }
   
-    .header-action-btn .btn-badge {
+    .header-action-btn .btn-badge-cart,
+    .header-action-btn .btn-badge-star {
       position: absolute;
       top: 0;
       right: -10px;

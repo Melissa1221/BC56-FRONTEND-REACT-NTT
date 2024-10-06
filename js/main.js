@@ -5,7 +5,7 @@ let categories = [];
 const categoriesSelect = document.querySelector('select');
 let cartCount = 0;
 let totalCartValue = 0;
-
+let favoritesCount = 0;
 async function getAllProducts() {
     try {
         const response = await fetch(`${url}`);
@@ -112,6 +112,9 @@ function renderProducts(products) {
         const wishlistIcon = document.createElement('ion-icon');
         wishlistIcon.setAttribute('name', 'star-outline');
         addToWishlistBtn.appendChild(wishlistIcon);
+        addToWishlistBtn.addEventListener('click', () => {
+            updateFavoritesCounter();
+        })
 
         cardActions.appendChild(addToCartBtn);
         cardActions.appendChild(addToWishlistBtn);
@@ -164,11 +167,18 @@ function renderProducts(products) {
         productsContainer.appendChild(productCard);
     });
 }
+
+function updateFavoritesCounter() {
+    favoritesCount += 1;
+    const favoritesBadge = document.querySelector('.btn-badge-star');
+    favoritesBadge.textContent = favoritesCount;
+   
+}
 function updateCartCounter(productPrice){
     cartCount += 1;
     totalCartValue += productPrice;
 
-    const cartBadge = document.querySelector('.btn-badge');
+    const cartBadge = document.querySelector('.btn-badge-cart');
     const cartTotal = document.querySelector('.btn-text');
 
     cartBadge.textContent = cartCount;
