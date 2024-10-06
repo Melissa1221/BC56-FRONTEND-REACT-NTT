@@ -14,8 +14,7 @@
     --black_5: hsla(0, 0%, 0%, 0.05);
     --white: hsl(0, 0%, 100%);
     --black: hsl(0, 0%, 0%);
-     --gradient: linear-gradient(to right, transparent 50%, var(--white_30) 100%);
-  
+
     --ff-urbanist: 'Urbanist', sans-serif;
   
     --fs-1: 4.8rem;
@@ -333,23 +332,73 @@
   .header-action-btn:is(:hover, :focus) { color: var(--black_70); }
   /* header end */
   
-  .overlay {
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 5;
-    pointer-events: none;
-    transition: var(--transition-1);
-  }
   
-  .overlay.active {
-    background-color: var(--black_50);
-    pointer-events: all;
-  }
-  /* header mobile end */
+.sidebar { z-index: 5; }
+
+.mobile-navbar {
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 350px;
+  width: 100%;
+  padding: 25px 40px;
+  z-index: 6;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: 0.25s var(--cubic-in);
+}
+
+.mobile-navbar.active {
+  visibility: visible;
+  transform: translateX(0);
+  transition: 0.4s var(--cubic-out);
+}
+
+.mobile-navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 55px;
+}
+
+.nav-close-btn {
+  font-size: 28px;
+  color: var(--hoockers-green);
+}
+
+.nav-close-btn ion-icon { --ionicon-stroke-width: 40px; }
+
+.mobile-navbar .navbar-link {
+  color: var(--black);
+  font-size: var(--fs-8);
+  text-transform: uppercase;
+  font-weight: var(--fw-600);
+  letter-spacing: 1px;
+  padding-block: 5px;
+  transition: var(--transition-1);
+}
+
+.mobile-navbar .navbar-link:is(:hover, :focus) { color: var(--hoockers-green); }
+
+.overlay {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: var(--transition-1);
+}
+
+.overlay.active {
+  background-color: var(--black_50);
+  pointer-events: all;
+}
+
   
   /* home start */
   .home { padding-block-start: 0; }
@@ -555,6 +604,8 @@
   
   
   @media (min-width: 575px) {
+    
+    
     .container {
       max-width: 540px;
       width: 100%;
@@ -592,6 +643,7 @@
       --section-padding: 50px;
     }
     
+    
    
     .container { max-width: 730px; }
   
@@ -625,6 +677,16 @@
     :root {
       --section-padding: 50px;
     }
+    .header{
+        padding-block-start: 0;
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        
+      }
+      article{
+          padding-block-start: 160px;
+      }
   
     .container { max-width: 960px; }
   
@@ -659,6 +721,16 @@
   }
   
   @media (min-width: 1200px) {
+    .header{
+        padding-block-start: 0;
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        
+      }
+      article{
+          padding-block-start: 160px;
+      }
     .header{
       padding-block-start: 0;
     }

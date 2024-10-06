@@ -25,10 +25,10 @@
 <!-- header start -->
   <header class="header">
 
-    <div class="header-top" >
+    <div class="header-top">
       <div class="container">
 
-        <button class="nav-open-btn" aria-label="open menu" >
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
           <span class="line line-1"></span>
           <span class="line line-2"></span>
           <span class="line line-3"></span>
@@ -94,6 +94,40 @@
 <!-- header end -->
 
 
+<div class="sidebar">
+    <div class="mobile-navbar" data-navbar>
+
+      <div class="wrapper">
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.png" width="179" height="26" alt="Glowing">
+        </a>
+
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="navbar-list">
+
+        <li>
+          <a href="#home" class="navbar-link has-after" data-nav-link>Inicio</a>
+        </li>
+
+
+        <li>
+          <a href="#shop" class="navbar-link has-after" data-nav-link>Productos</a>
+        </li>
+
+        <li>
+          <a href="#contact" class="navbar-link has-after" data-nav-link>Contáctanos</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="overlay" data-nav-toggler data-overlay></div>
+  </div>
 
 
 
@@ -181,431 +215,28 @@
       </section>
 <!-- shop start -->
 <section class="section shop" id="shop" aria-label="shop">
-  <div class="container">
-
-    <div class="title-wrapper">
-      <h2 class="h2 section-title">Los más vendidos</h2>
-      <div class="shop-options">
-        <select>
-          <option value="" disabled selected>Seleccione una categoría</option>
-          <option value="1">Alimentos</option>
-          <option value="2">Maquillaje</option>
-          <option value="3">Cuidado de la piel</option>
-          <option value="4">Cuidado del cabello</option>
-          
-        </select>
-        <!-- <a href="#" class="btn-link">
-          <span class="span">Todos</span>
-          <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-        </a> -->
-        
-      </div>      
-    </div>
-
-    <div class="shop-grid">
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
+    <div class="container">
+      <div class="title-wrapper">
+        <h2 class="h2 section-title">Los más vendidos</h2>
+        <div class="shop-options">
+          <select>
+            <option value="" disabled selected>Seleccione una categoría</option>
+            <option value="1">Alimentos</option>
+            <option value="2">Maquillaje</option>
+            <option value="3">Cuidado de la piel</option>
+            <option value="4">Cuidado del cabello</option>
+          </select>
         </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
       </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
+  
       
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
+      <div class="shop-grid" id="products-container">
+        
       </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <span class="badge" aria-label="20% de descuento">-20%</span>
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <del class="del">s/.39.00</del>
-
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="shop-card">
-
-        <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-          <img src="https://aruma.vtexassets.com/arquivos/ids/179686-800-auto?v=637987025887600000&width=800&height=auto&aspect=true" width="540" height="720" loading="lazy"
-            alt="Labial Rojo Maybelline" class="img-cover">
-
-          <div class="card-actions">
-
-            <button class="action-btn" aria-label="añadir al carrito">
-              <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <button class="action-btn" aria-label="añadir a la lista de deseos">
-              <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-          </div>
-        </div>
-
-        <div class="card-content">
-
-          <div class="price">
-            <span class="span">s/.29.00</span>
-          </div>
-
-          <h3>
-            <a href="#" class="card-title">Labial Rojo Maybelline</a>
-          </h3>
-
-          <div class="card-rating">
-
-            <div class="rating-wrapper" aria-label="5 estrellas">
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-              <ion-icon name="star" aria-hidden="true"></ion-icon>
-            </div>
-
-            <p class="rating-text">5170 reseñas</p>
-
-          </div>
-
-        </div>
-
-      </div>
-
+  
     </div>
-
-  </div>
-</section>
-
+  </section>
+  
 <!-- shop end -->
 
     </article>
@@ -665,6 +296,8 @@
   </footer>
   
 
+  <script src="./js/sidebar.js" defer></script>
+  <script src="./js/main.js" defer></script>
 
 <!-- íconos -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
