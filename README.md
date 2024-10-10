@@ -36,7 +36,7 @@ Para ver el proyecto en tu navegador, asegúrate de tener **Node.js** instalado.
    Navega hasta el directorio del proyecto y ejecuta el siguiente comando para instalar las dependencias necesarias:
 
    ```bash
-   cd bootcamp-project
+   cd cd BC56-FRONTEND-REACT-NTT
    npm install
    ```
 
