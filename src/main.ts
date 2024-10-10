@@ -6,9 +6,7 @@ const categoriesSelect = document.querySelector('select') as HTMLSelectElement |
 let cartCount: number = 0;
 let totalCartValue: number = 0;
 let favoritesCount: number = 0;
-import { Product } from './interfaces/product';
-import { Category } from './interfaces/category';
-
+import {Product, Category} from './interfaces'
 
 async function getAllProducts(): Promise<void> {
     try {
