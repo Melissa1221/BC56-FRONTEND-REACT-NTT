@@ -1,16 +1,20 @@
-const url = 'https://dummyjson.com/products';
-let products = [];
-let filteredProducts = [];
-let categories = [];
-const categoriesSelect = document.querySelector('select');
-let cartCount = 0;
-let totalCartValue = 0;
-let favoritesCount = 0;
-async function getAllProducts() {
+const url: string = 'https://dummyjson.com/products';
+let products: Product[] = [];
+let filteredProducts: Product[] = [];
+let categories: Category[] = [];
+const categoriesSelect = document.querySelector('select') as HTMLSelectElement | null;
+let cartCount: number = 0;
+let totalCartValue: number = 0;
+let favoritesCount: number = 0;
+import { Product } from './interfaces/product';
+import { Category } from './interfaces/category';
+
+
+async function getAllProducts(): Promise<void> {
     try {
         const response = await fetch(`${url}`);
         const data = await response.json();
-        products = data.products;
+        products = data.products as Product[];
         filteredProducts = products; 
         renderProducts(filteredProducts); 
     } catch (error) {
@@ -18,30 +22,35 @@ async function getAllProducts() {
     }
 }
 
-async function loadCategories() {
+async function loadCategories(): Promise<void> {
     try {
-        const response = await fetch(`${url}/categories`); 
+        const response = await fetch(`${url}/categories`);
         const data = await response.json();
-        categories = data;
+        categories = data as Category[];
         renderCategories(categories);
     } catch (error) {
         console.error('Error al obtener las categorías:', error);
     }
 }
 
-categoriesSelect.addEventListener('change', async (event) => {
-    const selectedCategory = event.target.value;
-    
-    try {
-        const response = await fetch(`${url}/category/${selectedCategory}`);
-        const data = await response.json();
-        renderProducts(data.products);
-    } catch (error) {
-        console.error('Error al obtener los productos por categoría:', error);
-    }
-});
+if (categoriesSelect) {
+    categoriesSelect.addEventListener('change', async (event: Event) => {
+        const target = event.target as HTMLSelectElement;
+        const selectedCategory = target.value;
+        
+        try {
+            const response = await fetch(`${url}/category/${selectedCategory}`);
+            const data = await response.json();
+            renderProducts(data.products as Product[]);
+        } catch (error) {
+            console.error('Error al obtener los productos por categoría:', error);
+        }
+    });
+}
 
-function renderCategories(categories) {
+function renderCategories(categories: Category[]): void {
+    if (!categoriesSelect) return;
+
     categoriesSelect.options.length = 0;
 
     const defaultOption = document.createElement('option');
@@ -58,15 +67,16 @@ function renderCategories(categories) {
         categoriesSelect.appendChild(option);
     });
 }
-function clearProductsContainer(container) {
+
+function clearProductsContainer(container: HTMLElement): void {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 }
 
-
-function renderProducts(products) {
-    const productsContainer = document.getElementById('products-container');
+function renderProducts(products: Product[]): void {
+    const productsContainer = document.getElementById('products-container') as HTMLElement | null;
+    if (!productsContainer) return;
     clearProductsContainer(productsContainer);
 
     products.forEach(product => {
@@ -102,9 +112,9 @@ function renderProducts(products) {
         cartIcon.setAttribute('name', 'bag-handle-outline');
         addToCartBtn.appendChild(cartIcon);
 
-        addToCartBtn.addEventListener('click', () =>{
+        addToCartBtn.addEventListener('click', () => {
             updateCartCounter(product.price);
-        })
+        });
 
         const addToWishlistBtn = document.createElement('button');
         addToWishlistBtn.classList.add('action-btn');
@@ -114,7 +124,7 @@ function renderProducts(products) {
         addToWishlistBtn.appendChild(wishlistIcon);
         addToWishlistBtn.addEventListener('click', () => {
             updateFavoritesCounter();
-        })
+        });
 
         cardActions.appendChild(addToCartBtn);
         cardActions.appendChild(addToWishlistBtn);
@@ -168,42 +178,37 @@ function renderProducts(products) {
     });
 }
 
-function updateFavoritesCounter() {
+function updateFavoritesCounter(): void {
     favoritesCount += 1;
-    const favoritesBadge = document.querySelector('.btn-badge-star');
-    favoritesBadge.textContent = favoritesCount;
-   
+    const favoritesBadge = document.querySelector('.btn-badge-star') as HTMLElement | null;
+    if (favoritesBadge) favoritesBadge.textContent = favoritesCount.toString();
 }
-function updateCartCounter(productPrice){
+
+function updateCartCounter(productPrice: number): void {
     cartCount += 1;
     totalCartValue += productPrice;
 
-    const cartBadge = document.querySelector('.btn-badge-cart');
-    const cartTotal = document.querySelector('.btn-text');
+    const cartBadge = document.querySelector('.btn-badge-cart') as HTMLElement | null;
+    const cartTotal = document.querySelector('.btn-text') as HTMLElement | null;
 
-    cartBadge.textContent = cartCount;
-    cartTotal.textContent = `s/.${totalCartValue.toFixed(2)}`;
-
+    if (cartBadge) cartBadge.textContent = cartCount.toString();
+    if (cartTotal) cartTotal.textContent = `s/.${totalCartValue.toFixed(2)}`;
 }
 
-function getStars(rating) {
+function getStars(rating: number): HTMLElement[] {
     const maxStars = 5;
-    const stars = [];
+    const stars: HTMLElement[] = [];
 
     for (let i = 1; i <= maxStars; i++) {
         const starIcon = document.createElement('ion-icon');
-        if (i <= rating) {
-            starIcon.setAttribute('name', 'star');
-        } else {
-            starIcon.setAttribute('name', 'star-outline');
-        }
+        starIcon.setAttribute('name', i <= rating ? 'star' : 'star-outline');
         stars.push(starIcon);
     }
 
-    return stars;  
+    return stars;
 }
 
-function filterProducts(searchTerm) {
+function filterProducts(searchTerm: string): void {
     const lowerCaseTerm = searchTerm.toLowerCase();
     filteredProducts = products.filter(product => {
         return product.title.toLowerCase().includes(lowerCaseTerm) ||
@@ -213,11 +218,13 @@ function filterProducts(searchTerm) {
     renderProducts(filteredProducts);
 }
 
-const searchField = document.querySelector('.search-field');
-searchField.addEventListener('input', (e) => {
-    const searchTerm = e.target.value;
-    filterProducts(searchTerm);
-});
+const searchField = document.querySelector('.search-field') as HTMLInputElement | null;
+if (searchField) {
+    searchField.addEventListener('input', (e: Event) => {
+        const searchTerm = (e.target as HTMLInputElement).value;
+        filterProducts(searchTerm);
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     getAllProducts();
