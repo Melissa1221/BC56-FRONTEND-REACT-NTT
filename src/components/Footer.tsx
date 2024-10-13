@@ -1,7 +1,5 @@
-// src/components/Footer.tsx
-
-import payImage from '/assets/images/pay.png'; // Imagen de métodos de pago
-import logoImage from '/assets/images/logo.png'; // Imagen del logo
+import payImage from '/assets/images/pay.png'; 
+import logoImage from '/assets/images/logo.png'; 
 import { IonIcon } from '@ionic/react';
 import { logoTwitter, logoFacebook, logoInstagram, logoYoutube } from 'ionicons/icons';
 

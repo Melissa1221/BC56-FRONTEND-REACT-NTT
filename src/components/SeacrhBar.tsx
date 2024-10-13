@@ -1,4 +1,3 @@
-// src/components/SearchBar.tsx
 import React from 'react';
 
 interface SearchBarProps {
@@ -8,7 +7,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
-    onSearch(searchTerm);  // Llamamos a la función onSearch con el valor actual del input
+    onSearch(searchTerm);  
   };
 
   return (
@@ -18,7 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         name="search"
         placeholder="Buscar productos"
         className="search-field"
-        onChange={handleInputChange} // Detectamos el cambio en el input
+        onChange={handleInputChange} 
       />
     </div>
   );

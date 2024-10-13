@@ -12,6 +12,9 @@ function App() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [, setSearchTerm] = useState<string>('');
+  const [cartCount, setCartCount] = useState<number>(0);
+  const [wishlistCount, setWishlistCount] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
  
   useEffect(() => {
@@ -32,7 +35,7 @@ function App() {
   const filterByCategory = async (category: string) => {
     setLoading(true);
     if (category === '') {
-      setFilteredProducts(products); // Mostrar todos los productos si no se selecciona ninguna categoría
+      setFilteredProducts(products); 
     } else {
       const productsByCategory = await getProductsByCategory(category);
       setFilteredProducts(productsByCategory);
@@ -56,10 +59,19 @@ function App() {
       setFilteredProducts(filtered);  
     }
   };
+  
+  const handleAddToCart = (price: number) => {
+    setCartCount(cartCount + 1);
+    setTotalPrice(totalPrice + price);
+  };
+
+  const handleAddToWishlist = () => {
+    setWishlistCount(wishlistCount + 1);
+  };
 
   return (
     <>
-      <Header onSearch={filterBySearchTerm} />
+      <Header onSearch={filterBySearchTerm} cartCount={cartCount} wishlistCount={wishlistCount} totalPrice={totalPrice}/>
       <main>
         <article>
           <Main/>
@@ -68,6 +80,8 @@ function App() {
             categories={categories} 
             filterByCategory={filterByCategory} 
             loading={loading} 
+            onAddToCart={handleAddToCart}
+            onAddToWishlist={handleAddToWishlist}
           />
         </article>
       </main>

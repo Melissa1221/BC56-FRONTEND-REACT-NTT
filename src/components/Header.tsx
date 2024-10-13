@@ -1,29 +1,28 @@
-// src/components/Header.tsx
 import React from 'react';
 import { IonIcon } from '@ionic/react';
 import '../App.css';
 import { bagHandleOutline, personOutline, searchOutline, starOutline } from 'ionicons/icons';
+import Sidebar from '../layout/Sidebar';
 
 interface HeaderProps {
   onSearch: (term: string) => void;
+  cartCount: number;
+  wishlistCount: number;
+  totalPrice: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSearch }) => {
-  // Función que maneja el cambio en el input de búsqueda
+const Header: React.FC<HeaderProps> = ({ onSearch,  cartCount, wishlistCount, totalPrice }) => {
+ 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
-    onSearch(searchTerm);  // Pasamos el término de búsqueda a App
+    onSearch(searchTerm); 
   };
 
   return (
     <header className="header">
       <div className="header-top">
         <div className="container">
-          <button className="nav-open-btn" aria-label="open menu" data-nav-toggler>
-            <span className="line line-1"></span>
-            <span className="line line-2"></span>
-            <span className="line line-3"></span>
-          </button>
+         <Sidebar/>
 
           <div className="input-wrapper">
             <input 
@@ -31,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               name="search" 
               placeholder="Buscar productos" 
               className="search-field" 
-              onChange={handleSearch}  // Detectamos los cambios en el input
+              onChange={handleSearch}  
             />
             <button className="search-submit" aria-label="search">
               <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
@@ -48,12 +47,15 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
             </button>
             <button className="header-action-btn" aria-label="favourite item">
               <IonIcon icon={starOutline} aria-hidden="true"></IonIcon>
-              <span className="btn-badge-star">0</span>
+              <span className="btn-badge-star">{wishlistCount}</span>
             </button>
             <button className="header-action-btn" aria-label="cart item">
-              <data className="btn-text" value="0">s/.0.00</data>
+            <data className="btn-text" value={cartCount}>
+              s/.{(totalPrice ?? 0).toFixed(2)}
+            </data>
+
               <IonIcon icon={bagHandleOutline} aria-hidden="true"></IonIcon>
-              <span className="btn-badge-cart">0</span>
+              <span className="btn-badge-cart">{cartCount}</span>
             </button>
           </div>
 

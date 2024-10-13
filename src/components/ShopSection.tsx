@@ -1,4 +1,3 @@
-// src/components/ShopSection.tsx
 import React from 'react';
 import ProductCard from './ProductCard';
 import { Product, Category } from '../interfaces';
@@ -8,9 +7,11 @@ interface ShopSectionProps {
   categories: Category[];
   filterByCategory: (category: string) => void;
   loading: boolean;
+  onAddToCart: (price: number) => void; 
+  onAddToWishlist: () => void;           
 }
 
-const ShopSection: React.FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading }) => {
+const ShopSection: React.FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading, onAddToCart, onAddToWishlist }) => {
   if (loading) return <p>Cargando...</p>;
 
   return (
@@ -30,13 +31,14 @@ const ShopSection: React.FC<ShopSectionProps> = ({ products, categories, filterB
           </div>
         </div>
         <div className="shop-grid">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <ProductCard   key={product.id} product={product} />
-            ))
-          ) : (
-            <p>No se encontraron productos.</p>
-          )}
+          {products.map((product) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onAddToCart={onAddToCart}  
+              onAddToWishlist={onAddToWishlist}  
+            />
+          ))}
         </div>
       </div>
     </section>

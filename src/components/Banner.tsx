@@ -1,10 +1,9 @@
 import React from 'react';
 
-// Definimos la interfaz para las props
 interface BannerProps {
-  image: string;      // La imagen es un string obligatorio (URL o path de la imagen)
-  title: string;      // El título es un string obligatorio
-  description: string; // La descripción es un string obligatorio
+  image: string;    
+  title: string;      
+  description: string; 
 }
 
 const Banner: React.FC<BannerProps> = ({ image, title, description }) => {

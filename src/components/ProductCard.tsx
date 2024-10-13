@@ -1,14 +1,14 @@
-// src/components/ProductCard.tsx
-
 import { Product } from '../interfaces';
 import { IonIcon } from '@ionic/react';
 import { bagHandleOutline, star, starOutline } from 'ionicons/icons';
 
 interface ProductCardProps {
   product: Product;
+  onAddToCart: (price: number) => void;
+  onAddToWishlist: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onAddToWishlist }) => {
   
 
   const generateStars = (rating: number) => {
@@ -37,10 +37,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           -{product.discountPercentage}%
         </span>
         <div className="card-actions">
-          <button  className="action-btn" aria-label="añadir al carrito">
+          <button onClick={() => onAddToCart(product.price)}
+           className="action-btn" aria-label="añadir al carrito">
             <IonIcon icon={bagHandleOutline}></IonIcon>
           </button>
-          <button className="action-btn" aria-label="añadir a la lista de deseos">
+          <button onClick={() => onAddToWishlist()} className="action-btn" aria-label="añadir a la lista de deseos">
             <IonIcon icon={starOutline}></IonIcon>
           </button>
         </div>
@@ -55,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         
         <div className="card-rating">
           <div className="rating-wrapper" aria-label={`${product.rating} estrellas`}>
-            {generateStars(Math.round(product.rating))} {/* Redondea el rating */}
+            {generateStars(Math.round(product.rating))}
           </div>
           <p className="rating-text">{product.stock} disponibles</p>
         </div>
