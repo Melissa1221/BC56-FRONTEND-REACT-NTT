@@ -1,64 +1,50 @@
-# Ecommerce Website - Maquetado
+# React + TypeScript + Vite
 
-Este es el maquetado inicial de un ecommerce que vende todo tipo de productos como alimentos, maquillaje, cuidado de la piel, cuidado del cabello y más. El proyecto está construido únicamente con HTML y CSS, sin dependencias adicionales ni librerías externas.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Contenido del Proyecto
+Currently, two official plugins are available:
 
-- **HTML**: Estructura básica de la página web.
-- **CSS**: Estilos personalizados para el diseño y la maquetación.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Características
+## Expanding the ESLint configuration
 
-- Maquetado responsive, diseñado para adaptarse a dispositivos móviles y pantallas de escritorio.
-- Diseño limpio y minimalista para la venta de productos.
-- Secciones principales: 
-  - Header con menú y opciones de usuario.
-  - Listado de productos destacados.
-  - Footer con redes sociales y métodos de pago.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Cómo inicializar el proyecto
+- Configure the top-level `parserOptions` property like this:
 
-No es necesario instalar ninguna dependencia ni ejecutar comandos de instalación. Simplemente sigue los pasos a continuación para ver el proyecto en tu navegador:
-
-### Pasos
-
-1. **Clonar el repositorio:**
-
-   Clona el repositorio en tu máquina local utilizando `git`:
-
-   ```bash
-   git clone https://github.com/Melissa1221/BC56-FRONTEND-REACT-NTT.git
-   ```
-
-2. **Abrir el archivo HTML:**
-
-   Navega hasta el directorio del proyecto y abre el archivo `index.html` en tu navegador preferido:
-
-   ```bash
-   cd BC56-FRONTEND-REACT-NTT
-   ```
-
-   Luego, puedes abrir el archivo `index.html` directamente desde el explorador de archivos o con el siguiente comando:
-
-   ```bash
-   open index.html
-   ```
-
-   O si prefieres usar un servidor local, puedes usar la extensión de VS Code **Live Server** 
-
-3. **Explorar la página:**
-
-   Una vez abierto el archivo `index.html`, puedes explorar la página ecommerce con todas las secciones maquetadas, incluyendo el header, listado de productos y footer.
-
-## Estructura del Proyecto
-
-```
-BC56-FRONTEND-REACT-NTT/
-│
-├── assets/              # Imágenes y otros recursos multimedia.
-├── css/                 # Archivos de estilos CSS.
-│   └── styles.css       # Estilos principales.
-├── index.html           # Archivo HTML principal.
-└── README.md            # Este archivo.
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
