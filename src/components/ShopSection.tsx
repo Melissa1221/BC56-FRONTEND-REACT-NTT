@@ -7,7 +7,7 @@ interface ShopSectionProps {
   categories: Category[];
   filterByCategory: (category: string) => void;
   loading: boolean;
-  onAddToCart: (price: number) => void; 
+  onAddToCart: (product: Product) => void; 
   onAddToWishlist: () => void;           
 }
 
@@ -35,7 +35,7 @@ const ShopSection: React.FC<ShopSectionProps> = ({ products, categories, filterB
             <ProductCard 
               key={product.id} 
               product={product} 
-              onAddToCart={onAddToCart}  
+              onAddToCart={() => onAddToCart(product)} 
               onAddToWishlist={onAddToWishlist}  
             />
           ))}
