@@ -1,11 +1,11 @@
-import React from 'react';
+import { ChangeEvent, FC } from 'react';
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     onSearch(searchTerm);  
   };

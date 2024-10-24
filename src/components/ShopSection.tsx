@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import ProductCard from './ProductCard';
 import { Product, Category } from '../interfaces';
 
@@ -11,7 +11,7 @@ interface ShopSectionProps {
   onAddToWishlist: () => void;           
 }
 
-const ShopSection: React.FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading, onAddToCart, onAddToWishlist }) => {
+const ShopSection: FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading, onAddToCart, onAddToWishlist }) => {
   if (loading) return <p>Cargando...</p>;
 
   return (

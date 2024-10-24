@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import CartSummary from '../components/CartSummary';
 import ShipmentForm from '../components/ShipmentForm';
 import Footer from '../components/Footer';
-import { useShop, useShopActions } from '../context/ShopContext';
+import { useShop, useShopActions } from '../shared/context/ShopContext';
 
 const Summary = () => {
   const { state } = useShop();

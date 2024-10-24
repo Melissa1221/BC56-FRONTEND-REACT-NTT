@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Summary from './pages/Summary';
-import { ShopProvider } from './context/ShopContext';
+import { ShopProvider } from './shared/context/ShopContext';
 
 function App() {
   return (

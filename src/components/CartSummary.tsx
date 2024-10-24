@@ -1,4 +1,4 @@
-import { useShop, useShopActions } from '../context/ShopContext';
+import { useShop, useShopActions } from '../shared/context/ShopContext';
 
 const CartSummary = () => {
   const { state } = useShop();

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import districts from '../data/districts';
+import districts from '../../data/districts';
 
 interface District {
   id: string;

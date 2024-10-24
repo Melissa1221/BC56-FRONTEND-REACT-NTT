@@ -1,6 +1,7 @@
 import { Product } from '../interfaces';
 import { IonIcon } from '@ionic/react';
 import { bagHandleOutline, star, starOutline } from 'ionicons/icons';
+import { FC } from 'react';
 
 interface ProductCardProps {
   product: Product;
@@ -8,27 +9,27 @@ interface ProductCardProps {
   onAddToWishlist: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onAddToWishlist }) => {
-  
+const calculateOriginalPrice = (price: number, discountPercentage: number): string => {
+  return (price * (1 + discountPercentage / 100)).toFixed(2);
+};
 
-  const generateStars = (rating: number) => {
-    const maxStars = 5;
-    const stars = [];
+const formatPrice = (price: number): string => {
+  return `s/.${price.toFixed(2)}`;
+};
 
-    for (let i = 1; i <= maxStars; i++) {
-      stars.push(
-        <IonIcon 
-          key={i} 
-          icon={i <= rating ? star : starOutline} 
-          aria-hidden="true" 
-          style={{ color: '#FFD700', fontSize: '16px' }} 
-        />
-      );
-    }
+const generateStars = (rating: number) => {
+  const maxStars = 5;
+  return Array.from({ length: maxStars }, (_, i) => (
+    <IonIcon 
+      key={i} 
+      icon={i < rating ? star : starOutline} 
+      aria-hidden="true" 
+      style={{ color: '#FFD700', fontSize: '16px' }} 
+    />
+  ));
+};
 
-    return stars;
-  };
-
+const ProductCard: FC<ProductCardProps> = ({ product, onAddToCart, onAddToWishlist }) => {
   return (
     <div className="shop-card">
       <div className="card-banner img-holder">
@@ -41,18 +42,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onAddTo
            className="action-btn" aria-label="añadir al carrito">
             <IonIcon icon={bagHandleOutline}></IonIcon>
           </button>
-          <button onClick={() => onAddToWishlist()} className="action-btn" aria-label="añadir a la lista de deseos">
+          <button onClick={onAddToWishlist} className="action-btn" aria-label="añadir a la lista de deseos">
             <IonIcon icon={starOutline}></IonIcon>
           </button>
         </div>
       </div>
       <div className="card-content">
         <div className="price">
-          <del>s/.{(product.price * (1 + product.discountPercentage / 100)).toFixed(2)}</del>
-          <span>s/.{product.price.toFixed(2)}</span>
+          <del>{formatPrice(Number(calculateOriginalPrice(product.price, product.discountPercentage)))}</del>
+          <span>{formatPrice(product.price)}</span>
         </div>
         <h3 className="card-title">{product.title}</h3>
-
         
         <div className="card-rating">
           <div className="rating-wrapper" aria-label={`${product.rating} estrellas`}>

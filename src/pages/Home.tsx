@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import ShopSection from '../components/ShopSection';
 import Main from '../components/Main';
 import Footer from '../components/Footer';
-import { useShop, useShopActions } from '../context/ShopContext';
+import { useShop, useShopActions } from '../shared/context/ShopContext';
 
 const Home = () => {
   const { state } = useShop();
