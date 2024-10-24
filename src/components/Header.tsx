@@ -4,6 +4,7 @@ import '../App.css';
 import { bagHandleOutline, personOutline, searchOutline, starOutline } from 'ionicons/icons';
 import Sidebar from '../layout/Sidebar';
 import { Link } from 'react-router-dom';
+import { getRoute } from '../shared/routes';
 
 interface HeaderProps {
   onSearch: (term: string) => void;
@@ -12,7 +13,61 @@ interface HeaderProps {
   totalPrice: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSearch,  cartCount, wishlistCount, totalPrice }) => {
+interface LinksNavbar {
+  link: boolean;
+  className: string;
+  text: string;
+  href: string;
+}
+
+const linksNavbar: LinksNavbar[] = [
+  {
+    link: true,
+    className: "navbar-link has-after",
+    text: "Inicio",
+    href: getRoute('home')
+  },
+  {
+    link: false,
+    className: "navbar-link has-after",
+    text: "Nosotros",
+    href: getRoute('aboutUs')
+  },
+  {
+    link: false,
+    className: "navbar-link has-after",
+    text: "Productos",
+    href: getRoute('shop')
+  },
+  {
+    link: false,
+    className: "navbar-link has-after",
+    text: "Contáctanos",
+    href: getRoute('contact')
+  }
+];
+
+const formatPrice = (price: number): string => {
+  return `s/.${(price ?? 0).toFixed(2)}`;
+};
+
+const renderNavItem = (item: LinksNavbar, index: number) => {
+  if (item.link) {
+    return (
+      <li key={index}>
+        <Link to={item.href} className={item.className}>{item.text}</Link>
+      </li>
+    );
+  } else {
+    return (
+      <li key={index}>
+        <a href={item.href} className={item.className}>{item.text}</a>
+      </li>
+    );
+  }
+};
+
+const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, totalPrice }) => {
  
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
@@ -38,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch,  cartCount, wishlistCount, to
             </button>
           </div>
 
-          <Link to="/" className="logo">
+          <Link to={getRoute('home')} className="logo">
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle, una tienda de ecommerce" />
           </Link>
 
@@ -51,9 +106,9 @@ const Header: React.FC<HeaderProps> = ({ onSearch,  cartCount, wishlistCount, to
               <span className="btn-badge-star">{wishlistCount}</span>
             </button>
             <button>
-            <Link to="/summary" className="header-action-btn" aria-label="cart item">
+            <Link to={getRoute('summary')} className="header-action-btn" aria-label="cart item">
               <data className="btn-text" value={cartCount}>
-                s/.{(totalPrice ?? 0).toFixed(2)}
+                {formatPrice(totalPrice)}
               </data>
               <IonIcon icon={bagHandleOutline} aria-hidden="true"></IonIcon>
               <span className="btn-badge-cart">{cartCount}</span>
@@ -63,10 +118,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch,  cartCount, wishlistCount, to
 
           <nav className="navbar">
             <ul className="navbar-list">
-              <li><Link to="/" className="navbar-link has-after">Inicio</Link></li>
-              <li><a href="#aboutUs" className="navbar-link has-after">Nosotros</a></li>
-              <li><a href="#shop" className="navbar-link has-after">Productos</a></li>
-              <li><a href="#contact" className="navbar-link has-after">Contáctanos</a></li>
+              {linksNavbar.map((item, index) => renderNavItem(item, index))}
             </ul>
           </nav>
         </div>

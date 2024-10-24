@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import useDistricts from '../hooks/useDistricts';
-import { useShopActions } from '../context/ShopContext';
+import useDistricts from '../shared/hooks/useDistricts';
+import { useShopActions } from '../shared/context/ShopContext';
 
 interface FormData {
   name: string;

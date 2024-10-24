@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
 import { IonIcon } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
+import { ROUTES } from '../shared/routes';
+
+interface NavItem {
+  href: string;
+  text: string;
+}
+
+const navItems: NavItem[] = [
+  {
+    href: ROUTES.home,
+    text: 'Inicio'
+  },
+  {
+    href: ROUTES.aboutUs,
+    text: 'Nosotros'
+  },
+  {
+    href: ROUTES.shop,
+    text: 'Productos'
+  },
+  {
+    href: ROUTES.contact,
+    text: 'Contáctanos'
+  }
+];
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +40,6 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-
       <button className="nav-open-btn" aria-label="open menu" onClick={toggleSidebar}>
         <span className="line line-1"></span>
         <span className="line line-2"></span>
@@ -24,7 +48,7 @@ const Sidebar: React.FC = () => {
 
       <div className={`mobile-navbar ${isOpen ? 'active' : ''}`} data-navbar>
         <div className="wrapper">
-          <a href="#" className="logo">
+          <a href={ROUTES.home} className="logo">
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle" />
           </a>
 
@@ -34,10 +58,13 @@ const Sidebar: React.FC = () => {
         </div>
 
         <ul className="navbar-list">
-          <li><a href="#home" className="navbar-link" onClick={closeSidebar}>Inicio</a></li>
-          <li><a href="#aboutUs" className="navbar-link" onClick={closeSidebar}>Nosotros</a></li>
-          <li><a href="#shop" className="navbar-link" onClick={closeSidebar}>Productos</a></li>
-          <li><a href="#contact" className="navbar-link" onClick={closeSidebar}>Contáctanos</a></li>
+          {navItems.map((item, index) => (
+            <li key={index}>
+              <a href={item.href} className="navbar-link" onClick={closeSidebar}>
+                {item.text}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
