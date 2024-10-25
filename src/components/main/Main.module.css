@@ -10,15 +10,28 @@
 
 .hasScrollbar {
   display: flex;
+  gap: 30px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Para Firefox */
-  -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+  padding-bottom: 20px;
 }
 
 .hasScrollbar::-webkit-scrollbar {
-  display: none; /* Para Chrome, Safari y Opera */
+  height: 10px;
+}
+
+.hasScrollbar::-webkit-scrollbar-track {
+  background-color: var(--cultured-1);
+  border-radius: 5px;
+}
+
+.hasScrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 5px;
+}
+
+.hasScrollbar::-webkit-scrollbar-button {
+  width: 20px;
 }
 
 @media (min-width: 575px) {
