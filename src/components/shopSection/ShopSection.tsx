@@ -1,6 +1,9 @@
 import { FC } from 'react';
-import ProductCard from './ProductCard';
-import { Product, Category } from '../interfaces';
+import ProductCard from '../productCard/ProductCard';
+import Select from '../select/Select';
+import { Product, Category } from '../../interfaces';
+import styles from './ShopSection.module.css';
+
 
 interface ShopSectionProps {
   products: Product[];
@@ -14,23 +17,25 @@ interface ShopSectionProps {
 const ShopSection: FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading, onAddToCart, onAddToWishlist }) => {
   if (loading) return <p>Cargando...</p>;
 
+  const categoryOptions = categories.map(category => ({
+    value: category.slug,
+    label: category.name
+  }));
+
   return (
-    <section className="section shop" id="shop" aria-label="shop">
-      <div className="container">
-        <div className="title-wrapper">
-          <h2 className="h2 section-title">Los más vendidos</h2>
-          <div className="shop-options">
-            <select onChange={(e) => filterByCategory(e.target.value)}>
-              <option value="">Seleccione una categoría</option>
-              {categories.map((category) => (
-                <option key={category.slug} value={category.slug}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
+    <section className={`${styles.section} ${styles.shop}`} id="shop" aria-label="shop">
+      <div className={styles.container}>
+        <div className={styles.titleWrapper}>
+          <h2 className={styles.sectionTitle}>Los más vendidos</h2>
+          <div className={styles.shopOptions}>
+            <Select 
+              options={categoryOptions}
+              onChange={filterByCategory}
+              defaultOption="Seleccione una categoría"
+            />
           </div>
         </div>
-        <div className="shop-grid">
+        <div className={styles.shopGrid}>
           {products.map((product) => (
             <ProductCard 
               key={product.id} 

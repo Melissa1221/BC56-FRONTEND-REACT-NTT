@@ -1,0 +1,162 @@
+.shopGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.shopCard {
+  border: 1px solid #ddd;
+  padding: 10px;
+  transition: var(--transition-2);
+}
+
+.cardBanner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.imgCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 5px 10px;
+  font-size: var(--fs-8);
+  border-radius: var(--radius-3);
+}
+
+.cardActions {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  display: grid;
+  gap: 8px;
+  opacity: 0;
+  transition: var(--transition-2);
+}
+
+.actionBtn {
+  background-color: var(--white);
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: var(--transition-1);
+  border: none;
+  cursor: pointer;
+}
+
+.actionBtn:is(:hover, :focus) {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.shopCard:is(:hover, :focus-within) .cardActions {
+  opacity: 1;
+  transform: translate(-10px, -50%);
+}
+
+.cardContent {
+  padding-block: 15px;
+  text-align: center;
+}
+
+.price,
+.cardRating,
+.ratingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.price del {
+  font-size: var(--fs-9);
+  font-weight: var(--fw-400);
+  color: var(--gray);
+}
+
+.price span {
+  color: var(--black);
+  font-weight: var(--fw-700);
+  font-size: var(--fs-8);
+}
+
+.cardTitle {
+  color: var(--black);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  margin-block: 8px;
+  transition: var(--transition-1);
+}
+
+.cardTitle:is(:hover, :focus) {
+  text-decoration: underline;
+  color: var(--primary-blue);
+}
+
+.ratingWrapper {
+  gap: 2px;
+  color: var(--primary-blue);
+  font-size: 14px;
+}
+
+.ratingText {
+  font-size: var(--fs-8);
+  font-weight: var(--fw-400);
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .shopCard {
+    padding: 16px;
+  }
+
+  .cardBanner {
+    aspect-ratio: 3 / 4;
+  }
+
+  .badge {
+    top: 20px;
+    left: 20px;
+  }
+
+  .actionBtn {
+    font-size: 24px;
+    padding: 12px;
+  }
+
+  .price span {
+    font-size: var(--fs-7);
+  }
+
+  .cardTitle {
+    font-size: var(--fs-6);
+  }
+
+  .ratingWrapper {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 575px) {
+  .shopGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .shopGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}

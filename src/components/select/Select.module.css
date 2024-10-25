@@ -1,0 +1,37 @@
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: var(--fs-7);
+  border: 1px solid var(--cultured-1);
+  border-radius: var(--radius-3);
+  background-color: var(--white);
+  color: var(--black);
+  appearance: none;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+.selectWrapper::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .select {
+    font-size: var(--fs-6);
+  }
+}

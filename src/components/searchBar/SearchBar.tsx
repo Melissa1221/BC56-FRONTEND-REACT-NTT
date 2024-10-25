@@ -1,8 +1,9 @@
 import { ChangeEvent, FC } from 'react';
+import { IonIcon } from '@ionic/react';
+import { searchOutline } from 'ionicons/icons';
+import styles from './SearchBar.module.css';
+import { SearchBarProps } from './searchBar.domain';
 
-interface SearchBarProps {
-  onSearch: (term: string) => void;
-}
 
 const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -11,14 +12,17 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="input-wrapper">
+    <div className={styles.inputWrapper}>
       <input
         type="search"
         name="search"
         placeholder="Buscar productos"
-        className="search-field"
+        className={styles.searchField}
         onChange={handleInputChange} 
       />
+      <button className={styles.searchSubmit} aria-label="search">
+        <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
+      </button>
     </div>
   );
 };

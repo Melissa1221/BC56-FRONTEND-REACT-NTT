@@ -1,4 +1,5 @@
-import Banner from './Banner';
+import Banner from '../banner/Banner';
+import styles from './Main.module.css';
 
 interface BannerData {
   image: string;
@@ -25,9 +26,9 @@ const banners: BannerData[] = [
 ];
 
 const Main = () => (
-  <section className="section home" id="home" aria-label="banner principal">
-    <div className="container">
-      <ul className="has-scrollbar">
+  <section className={styles.home} id="home" aria-label="banner principal">
+    <div className={styles.container}>
+      <ul className={styles.hasScrollbar}>
         {banners.map((banner, index) => (
           <Banner
             key={index}
