@@ -1,26 +1,42 @@
-import { FC } from 'react';
+import React, { FC, useMemo, useCallback } from 'react';
 import ProductCard from '../productCard/ProductCard';
 import Select from '../select/Select';
 import { Product, Category } from '../../interfaces';
 import styles from './ShopSection.module.css';
-
 
 interface ShopSectionProps {
   products: Product[];
   categories: Category[];
   filterByCategory: (category: string) => void;
   loading: boolean;
-  onAddToCart: (product: Product) => void; 
-  onAddToWishlist: () => void;           
+  onAddToCart: (product: Product) => void;
+  onAddToWishlist: () => void;
 }
 
-const ShopSection: FC<ShopSectionProps> = ({ products, categories, filterByCategory, loading, onAddToCart, onAddToWishlist }) => {
-  if (loading) return <p>Cargando...</p>;
+const ShopSection: FC<ShopSectionProps> = ({ 
+  products, 
+  categories, 
+  filterByCategory, 
+  loading, 
+  onAddToCart, 
+  onAddToWishlist 
+}) => {
 
-  const categoryOptions = categories.map(category => ({
-    value: category.slug,
-    label: category.name
-  }));
+  const categoryOptions = useMemo(() => 
+    categories.map(category => ({
+      value: category.slug,
+      label: category.name
+    })), 
+    [categories]
+  );
+
+  const handleAddToCart = useCallback((product: Product) => {
+    onAddToCart(product);
+  }, [onAddToCart]);
+
+  if (loading) {
+    return <p>Cargando...</p>; // Replace with spinner or loading indicator if desired
+  }
 
   return (
     <section className={`${styles.section} ${styles.shop}`} id="shop" aria-label="shop">
@@ -35,16 +51,21 @@ const ShopSection: FC<ShopSectionProps> = ({ products, categories, filterByCateg
             />
           </div>
         </div>
-        <div className={styles.shopGrid}>
-          {products.map((product) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
-              onAddToCart={() => onAddToCart(product)} 
-              onAddToWishlist={onAddToWishlist}  
-            />
-          ))}
-        </div>
+
+        {products.length === 0 ? (
+          <p>No hay productos disponibles.</p>
+        ) : (
+          <div className={styles.shopGrid}>
+            {products.map((product) => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onAddToCart={() => handleAddToCart(product)} 
+                onAddToWishlist={onAddToWishlist}  
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

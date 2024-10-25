@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './InputForm.module.css';
 
 interface InputFormProps {
@@ -14,7 +14,7 @@ interface InputFormProps {
   touched?: boolean;
 }
 
-const InputForm: React.FC<InputFormProps> = ({
+const InputForm: FC<InputFormProps> = ({
   id,
   label,
   name,
