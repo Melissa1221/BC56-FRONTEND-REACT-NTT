@@ -1,0 +1,80 @@
+.footer {
+  background-color: var(--cultured-1);
+  padding-block: 70px;
+}
+
+.container {
+  max-width: 1300px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin-block-end: 20px;
+}
+
+.copyright {
+  font-size: var(--fs-7);
+}
+
+.socialList {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.socialLink {
+  color: var(--black);
+  font-size: 18px;
+  transition: var(--transition-1);
+}
+
+.socialLink:is(:hover, :focus) {
+  color: var(--primary-blue);
+}
+
+.logo {
+  display: none;
+}
+
+.paymentMethods {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .footerBottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .wrapper {
+    margin-block-end: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer {
+    padding-block: 100px 80px;
+  }
+
+  .logo {
+    display: block;
+  }
+
+  .logo img {
+    width: 190px;
+  }
+}

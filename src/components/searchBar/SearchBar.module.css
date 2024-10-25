@@ -1,0 +1,44 @@
+.inputWrapper {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .inputWrapper {
+    display: block;
+    position: relative;
+    width: 300px;
+  }
+
+  .searchField {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid var(--cultured-1);
+    border-radius: var(--radius-3);
+    font-size: var(--fs-7);
+  }
+
+  .searchField::placeholder {
+    color: var(--spanish-gray);
+  }
+
+  .searchField:focus {
+    border-color: var(--black);
+    outline: none;
+  }
+
+  .searchSubmit {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  .searchSubmit ion-icon {
+    --ionicon-stroke-width: 40px;
+  }
+}

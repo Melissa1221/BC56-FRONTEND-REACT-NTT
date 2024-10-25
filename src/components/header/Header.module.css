@@ -1,0 +1,267 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  z-index: 1000;
+  box-shadow: var(--shadow-1);
+}
+
+.headerTop {
+  padding: 10px 15px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputWrapper,
+.headerActionBtn:not(:first-child),
+.navbar {
+  display: none;
+}
+
+.logo img {
+  max-width: 120px;
+  height: auto;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+}
+
+.headerActionBtn {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--black);
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.btnBadgeCart,
+.btnBadgeStar {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnText {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .headerTop {
+    padding: 15px 30px;
+  }
+
+  .logo img {
+    max-width: 150px;
+  }
+
+  .btnText {
+    display: inline;
+    margin-right: 5px;
+    font-size: var(--fs-7);
+  }
+
+  .headerActionBtn {
+    font-size: 28px;
+  }
+
+  .btnBadgeCart,
+  .btnBadgeStar {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .headerTop {
+    padding: 20px 50px;
+  }
+
+  .navbar,
+  .inputWrapper {
+    display: block;
+  }
+
+  .navbarList {
+    display: flex;
+    gap: 20px;
+  }
+
+  .navbarLink {
+    color: var(--black);
+    font-size: var(--fs-7);
+    font-weight: var(--fw-500);
+  }
+
+  .inputWrapper {
+    position: relative;
+    width: 300px;
+  }
+
+  .searchField {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid var(--cultured-1);
+    border-radius: var(--radius-3);
+    font-size: var(--fs-7);
+  }
+
+  .searchSubmit {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--black);
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header .inputWrapper,
+  .header .headerActionBtn:not(:first-child),
+  .header .navbar {
+    display: block;
+  }
+
+  .header {
+    padding-block-end: 60px;
+    margin-block-end: 10px;
+  }
+
+  .headerTop {
+    position: unset;
+    padding-block: 24px 0;
+  }
+
+  .headerTop:is(.active, .headerHide) {
+    all: unset;
+  }
+
+  .headerTop .container {
+    flex-wrap: wrap;
+  }
+
+  .searchField {
+    width: 270px;
+    font-size: var(--fs-7);
+    border: 2px solid var(--primary-blue_20);
+    border-radius: var(--radius-3);
+    padding: 10px 20px;
+    padding-inline-end: 40px;
+    outline: none;
+    transition: var(--transition-1);
+  }
+
+  .searchField::placeholder {
+    color: var(--spanish-gray);
+  }
+
+  .searchField:focus {
+    border-color: var(--black);
+  }
+
+  .header .logo {
+    margin-inline-end: 60px;
+  }
+
+  .headerActions {
+    gap: 40px;
+  }
+
+  .headerActionBtn .btnBadgeCart,
+  .headerActionBtn .btnBadgeStar {
+    top: 0;
+    right: -10px;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: var(--fs-9);
+    min-width: 18px;
+    height: 18px;
+    line-height: 1.4;
+    border-radius: 20px;
+  }
+
+  .headerActionBtn:last-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .headerActionBtn .btnText {
+    font-size: var(--fs-7);
+    font-weight: var(--fw-700);
+    margin-block-start: 3px;
+  }
+
+  .navbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    padding-block: 18px;
+    z-index: 4;
+  }
+
+  .navbar .navbarList {
+    justify-content: center;
+  }
+
+  .navbar .navbarLink {
+    color: var(--black);
+    font-size: var(--fs-7);
+    font-weight: var(--fw-600);
+  }
+
+  .navbar .navbarLink::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--black);
+    transition: var(--transition-1);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .navbar .navbarLink:is(:hover, :focus)::after {
+    transform: scaleX(1);
+  }
+
+  .headerTop.active .navbar {
+    position: fixed;
+    top: -80px;
+    bottom: auto;
+    padding-block: 28px;
+    box-shadow: var(--shadow-1);
+    transform: translateY(100%);
+    transition: var(--transition-2);
+  }
+
+  .headerTop.headerHide .navbar {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}

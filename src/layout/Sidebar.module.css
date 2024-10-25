@@ -1,0 +1,98 @@
+.sidebar {
+  z-index: 5;
+}
+
+.navOpenBtn {
+  display: block;
+  width: 26px;
+  padding-block: 5px;
+  cursor: pointer;
+}
+
+.line {
+  height: 2px;
+  background-color: var(--black);
+  margin-bottom: 4px;
+}
+
+.line1 { width: 15px; }
+.line2 { width: 20px; }
+.line3 { width: 18px; }
+
+.mobileNavbar {
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 350px;
+  width: 80%;
+  padding: 25px 20px;
+  z-index: 1001;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: 0.25s var(--cubic-in);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.active {
+  visibility: visible;
+  transform: translateX(0);
+  transition: 0.4s var(--cubic-out);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 30px;
+}
+
+.navCloseBtn {
+  font-size: 28px;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.navCloseBtn ion-icon { --ionicon-stroke-width: 40px; }
+
+.navbarList {
+  list-style: none;
+  padding: 0;
+}
+
+.navbarLink {
+  color: var(--black);
+  font-size: var(--fs-7);
+  text-transform: uppercase;
+  font-weight: var(--fw-600);
+  letter-spacing: 1px;
+  padding-block: 10px;
+  transition: var(--transition-1);
+}
+
+.navbarLink:is(:hover, :focus) { color: var(--primary-blue); }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--black_50);
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-1);
+  z-index: 1000;
+}
+
+.overlayActive {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media (min-width: 1024px) {
+  .sidebar,
+  .navOpenBtn,
+  .mobileNavbar,
+  .overlay {
+    display: none;
+  }
+}

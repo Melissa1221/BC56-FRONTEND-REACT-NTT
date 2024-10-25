@@ -1,0 +1,92 @@
+.scrollbarItem {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.homeCard {
+  background-color: var(--light-gray);
+  padding: 100px 15px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc(100vh - 80px); /* Ajusta 80px según la altura de tu header */
+  display: flex;
+  align-items: center;
+}
+
+.cardContent {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.homeTitle {
+  color: var(--black);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-700);
+}
+
+.homeText {
+  font-size: var(--fs-6);
+  margin-block: 16px 30px;
+  max-width: 30ch;
+}
+
+.btn {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  padding: 12px 24px;
+  border-radius: var(--radius-3);
+  transition: var(--transition-1);
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: var(--black);
+}
+
+@media (min-width: 575px) {
+  .homeCard {
+    height: calc(100vh - 100px); 
+    padding: 0;
+  }
+
+  .cardContent {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homeCard {
+    height: calc(100vh - 120px); 
+  }
+
+  .homeText {
+    font-size: var(--fs-5);
+  }
+
+  .cardContent {
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .homeCard {
+    height: calc(100vh - 140px);
+  }
+
+  .homeText {
+    max-width: 40ch;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cardContent {
+    padding: 0 100px;
+  }
+}

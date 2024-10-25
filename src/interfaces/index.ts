@@ -1,2 +1,2 @@
-export * from "./product.interface";
-export * from "./category.interface";
+export * from "../domain/product.interface";
+export * from "../domain/category.interface";

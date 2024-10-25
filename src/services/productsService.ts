@@ -1,6 +1,10 @@
 import { Product, Category } from '../interfaces'
 
-const API_URL = 'https://dummyjson.com/products';
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+  throw new Error('API_URL no está definida en las variables de entorno');
+}
 
 export const getAllProducts = async (): Promise<Product[]> => {
   const response = await fetch(API_URL);

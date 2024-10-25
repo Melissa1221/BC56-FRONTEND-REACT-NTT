@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IonIcon } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import { ROUTES } from '../shared/routes';
+import styles from './Sidebar.module.css';
 
 interface NavItem {
   href: string;
@@ -40,27 +41,27 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <button className="nav-open-btn" aria-label="open menu" onClick={toggleSidebar}>
-        <span className="line line-1"></span>
-        <span className="line line-2"></span>
-        <span className="line line-3"></span>
+      <button className={styles.navOpenBtn} aria-label="open menu" onClick={toggleSidebar}>
+        <span className={`${styles.line} ${styles.line1}`}></span>
+        <span className={`${styles.line} ${styles.line2}`}></span>
+        <span className={`${styles.line} ${styles.line3}`}></span>
       </button>
 
-      <div className={`mobile-navbar ${isOpen ? 'active' : ''}`} data-navbar>
-        <div className="wrapper">
-          <a href={ROUTES.home} className="logo">
+      <div className={`${styles.mobileNavbar} ${isOpen ? styles.active : ''}`} data-navbar>
+        <div className={styles.wrapper}>
+          <a href={ROUTES.home} className={styles.logo}>
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle" />
           </a>
 
-          <button className="nav-close-btn" aria-label="close menu" onClick={closeSidebar}>
+          <button className={styles.navCloseBtn} aria-label="close menu" onClick={closeSidebar}>
             <IonIcon icon={closeOutline} />
           </button>
         </div>
 
-        <ul className="navbar-list">
+        <ul className={styles.navbarList}>
           {navItems.map((item, index) => (
             <li key={index}>
-              <a href={item.href} className="navbar-link" onClick={closeSidebar}>
+              <a href={item.href} className={styles.navbarLink} onClick={closeSidebar}>
                 {item.text}
               </a>
             </li>
@@ -68,7 +69,7 @@ const Sidebar: React.FC = () => {
         </ul>
       </div>
 
-      <div className={`overlay ${isOpen ? 'active' : ''}`} data-overlay onClick={closeSidebar}></div>
+      <div className={`${styles.overlay} ${isOpen ? styles.overlayActive : ''}`} data-overlay onClick={closeSidebar}></div>
     </>
   );
 };

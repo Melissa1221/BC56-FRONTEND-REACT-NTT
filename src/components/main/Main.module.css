@@ -1,0 +1,40 @@
+.home {
+  padding-top: 80px; /* Ajusta este valor según la altura de tu header */
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hasScrollbar {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+}
+
+.hasScrollbar::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
+}
+
+@media (min-width: 575px) {
+  .home {
+    padding-top: 100px; /* Ajusta según sea necesario */
+  }
+}
+
+@media (min-width: 768px) {
+  .home {
+    padding-top: 120px; /* Ajusta según sea necesario */
+  }
+}
+
+@media (min-width: 992px) {
+  .home {
+    padding-top: 140px; /* Ajusta según sea necesario */
+  }
+}

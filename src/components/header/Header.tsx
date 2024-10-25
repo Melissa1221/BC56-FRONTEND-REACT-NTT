@@ -1,47 +1,34 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
-import '../App.css';
 import { bagHandleOutline, personOutline, searchOutline, starOutline } from 'ionicons/icons';
-import Sidebar from '../layout/Sidebar';
+import Sidebar from '../../layout/Sidebar';
 import { Link } from 'react-router-dom';
-import { getRoute } from '../shared/routes';
-
-interface HeaderProps {
-  onSearch: (term: string) => void;
-  cartCount: number;
-  wishlistCount: number;
-  totalPrice: number;
-}
-
-interface LinksNavbar {
-  link: boolean;
-  className: string;
-  text: string;
-  href: string;
-}
+import { getRoute } from '../../shared/routes';
+import { LinksNavbar, HeaderProps } from './header.domain';
+import styles from './Header.module.css';
 
 const linksNavbar: LinksNavbar[] = [
   {
     link: true,
-    className: "navbar-link has-after",
+    className: styles.navbarLink,
     text: "Inicio",
     href: getRoute('home')
   },
   {
     link: false,
-    className: "navbar-link has-after",
+    className: styles.navbarLink,
     text: "Nosotros",
     href: getRoute('aboutUs')
   },
   {
     link: false,
-    className: "navbar-link has-after",
+    className: styles.navbarLink,
     text: "Productos",
     href: getRoute('shop')
   },
   {
     link: false,
-    className: "navbar-link has-after",
+    className: styles.navbarLink,
     text: "Contáctanos",
     href: getRoute('contact')
   }
@@ -75,49 +62,49 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
   };
 
   return (
-    <header className="header">
-      <div className="header-top">
-        <div className="container">
+    <header className={styles.header}>
+      <div className={styles.headerTop}>
+        <div className={styles.container}>
          <Sidebar/>
 
-          <div className="input-wrapper">
+          <div className={styles.inputWrapper}>
             <input 
               type="search" 
               name="search" 
               placeholder="Buscar productos" 
-              className="search-field" 
+              className={styles.searchField} 
               onChange={handleSearch}  
             />
-            <button className="search-submit" aria-label="search">
+            <button className={styles.searchSubmit} aria-label="search">
               <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
             </button>
           </div>
 
-          <Link to={getRoute('home')} className="logo">
+          <Link to={getRoute('home')} className={styles.logo}>
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle, una tienda de ecommerce" />
           </Link>
 
-          <div className="header-actions">
-            <button className="header-action-btn" aria-label="user">
+          <div className={styles.headerActions}>
+            <button className={styles.headerActionBtn} aria-label="user">
               <IonIcon icon={personOutline} aria-hidden="true"></IonIcon>
             </button>
-            <button className="header-action-btn" aria-label="favourite item">
+            <button className={styles.headerActionBtn} aria-label="favourite item">
               <IonIcon icon={starOutline} aria-hidden="true"></IonIcon>
-              <span className="btn-badge-star">{wishlistCount}</span>
+              <span className={styles.btnBadgeStar}>{wishlistCount}</span>
             </button>
             <button>
-            <Link to={getRoute('summary')} className="header-action-btn" aria-label="cart item">
-              <data className="btn-text" value={cartCount}>
+            <Link to={getRoute('summary')} className={styles.headerActionBtn} aria-label="cart item">
+              <data className={styles.btnText} value={cartCount}>
                 {formatPrice(totalPrice)}
               </data>
               <IonIcon icon={bagHandleOutline} aria-hidden="true"></IonIcon>
-              <span className="btn-badge-cart">{cartCount}</span>
+              <span className={styles.btnBadgeCart}>{cartCount}</span>
             </Link>
             </button>
           </div>
 
-          <nav className="navbar">
-            <ul className="navbar-list">
+          <nav className={styles.navbar}>
+            <ul className={styles.navbarList}>
               {linksNavbar.map((item, index) => renderNavItem(item, index))}
             </ul>
           </nav>
