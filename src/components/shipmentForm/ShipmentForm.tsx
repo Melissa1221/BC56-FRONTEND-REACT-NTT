@@ -166,9 +166,11 @@ const ShipmentForm = () => {
           touched={touched.phone}
         />
         {showAlert && (
-          <div className={`${styles.alert} ${styles.alertSuccess}`}>
+          <div className={`${styles.alert} ${styles.alertSuccess}`} data-testid="success-alert">
             Su pedido se registró con éxito
-            <button onClick={handleAlertConfirm} className={styles.btnPrimary}>Aceptar</button>
+            <button onClick={handleAlertConfirm} className={styles.btnPrimary}>
+              Aceptar
+            </button>
           </div>
         )}
         <div>

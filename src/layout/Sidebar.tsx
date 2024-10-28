@@ -10,29 +10,17 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  {
-    href: ROUTES.home,
-    text: 'Inicio'
-  },
-  {
-    href: ROUTES.aboutUs,
-    text: 'Nosotros'
-  },
-  {
-    href: ROUTES.shop,
-    text: 'Productos'
-  },
-  {
-    href: ROUTES.contact,
-    text: 'Contáctanos'
-  }
+  { href: ROUTES.home, text: 'Inicio' },
+  { href: ROUTES.aboutUs, text: 'Nosotros' },
+  { href: ROUTES.shop, text: 'Productos' },
+  { href: ROUTES.contact, text: 'Contáctanos' },
 ];
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   };
 
   const closeSidebar = () => {
@@ -58,18 +46,20 @@ const Sidebar: React.FC = () => {
           </button>
         </div>
 
-        <ul className={styles.navbarList}>
-          {navItems.map((item, index) => (
-            <li key={index}>
-              <a href={item.href} className={styles.navbarLink} onClick={closeSidebar}>
-                {item.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {isOpen && (
+          <ul className={styles.navbarList}>
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <a href={item.href} className={styles.navbarLink} onClick={closeSidebar}>
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
-      <div className={`${styles.overlay} ${isOpen ? styles.overlayActive : ''}`} data-overlay onClick={closeSidebar}></div>
+      <div className={`${styles.overlay} ${isOpen ? styles.overlayActive : ''}`} data-testid="overlay" onClick={closeSidebar}></div>
     </>
   );
 };
