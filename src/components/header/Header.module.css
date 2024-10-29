@@ -32,6 +32,7 @@
 .headerActions {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .headerActionBtn {
@@ -62,6 +63,30 @@
 
 .btnText {
   display: none;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: var(--primary-blue);
+  font-size: var(--fs-7);
+  cursor: pointer;
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+
+.welcomeMessage {
+  font-size: 16px;
+  color: var(--black);
+  margin-right: auto;
+}
+
+.userImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 @media (min-width: 768px) {

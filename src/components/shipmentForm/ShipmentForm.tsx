@@ -90,7 +90,7 @@ const ShipmentForm = () => {
   const handleAlertConfirm = () => {
     setShowAlert(false);
     resetCart();
-    navigate('/');
+    navigate('/home');
   };
 
   return (

@@ -1,0 +1,33 @@
+/* Estilo del contenedor principal */
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  padding: 20px;
+  background-color: #f4f6f8; /* Color de fondo suave */
+}
+
+/* Caja del formulario de login */
+.loginBox {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  text-align: center;
+}
+
+
+.forgotPasswordContainer {
+  margin-top: 10px;
+}
+
+.forgotPasswordLink {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}

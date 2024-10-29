@@ -1,19 +1,26 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Summary from './pages/Summary';
+
 import { ShopProvider } from './shared/context/ShopContext';
+import Login from './pages/login/Login';
+import Home from './pages/home';
+import Summary from './pages/summary';
+import { UserProvider } from './shared/context/UserContext';
 
 function App() {
   return (
-    <ShopProvider>
+    <UserProvider>
+      <ShopProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/summary" element={<Summary />} />
+          <Route path='/' element={<Login/>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </ShopProvider>
+    </UserProvider>
+    
   );
 }
 

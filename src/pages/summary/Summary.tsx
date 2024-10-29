@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
-import Header from '../components/header/Header';
-import CartSummary from '../components/cartSummary/CartSummary';
-import ShipmentForm from '../components/shipmentForm/ShipmentForm';
-import Footer from '../components/footer/Footer';
-import { useShop, useShopActions } from '../shared/context/ShopContext';
+import Header from '../../components/header/Header';
+import CartSummary from '../../components/cartSummary/CartSummary';
+import Footer from '../../components/footer/Footer';
+import ShipmentForm from '../../components/shipmentForm/ShipmentForm';
+import { useShop, useShopActions } from '../../shared/context/ShopContext';
 
 const Summary = () => {
   const { state } = useShop();

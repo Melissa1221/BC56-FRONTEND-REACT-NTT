@@ -1,6 +1,7 @@
 export const RegexPatterns = {
   NAME: /^[a-zA-Z\s]*$/,
-  PHONE: /^\d+$/
+  PHONE: /^\d+$/,
+  EMAIL: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
 };
 
 export const isValidName = (value: string): boolean => {
@@ -32,3 +33,8 @@ export const validateField = (name: string, value: string): string => {
       return '';
   }
 };
+
+export enum colorsAlertLogin{
+  success = '#3085d6',
+  error = '#d33'
+}

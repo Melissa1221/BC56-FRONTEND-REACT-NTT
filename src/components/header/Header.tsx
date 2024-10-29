@@ -2,10 +2,11 @@ import React from 'react';
 import { IonIcon } from '@ionic/react';
 import { bagHandleOutline, personOutline, searchOutline, starOutline } from 'ionicons/icons';
 import Sidebar from '../../layout/Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getRoute } from '../../shared/routes';
 import { LinksNavbar, HeaderProps } from './header.domain';
 import styles from './Header.module.css';
+import { useUser } from '../../shared/context/UserContext';
 
 const linksNavbar: LinksNavbar[] = [
   {
@@ -55,18 +56,24 @@ const renderNavItem = (item: LinksNavbar, index: number) => {
 };
 
 const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, totalPrice }) => {
- 
+  const { firstName, lastName, userImage, logout } = useUser(); 
+  const navigate = useNavigate();
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     onSearch(searchTerm); 
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate(getRoute('login')); 
   };
 
   return (
     <header className={styles.header}>
       <div className={styles.headerTop}>
         <div className={styles.container}>
-         <Sidebar/>
-
+          <Sidebar />
           <div className={styles.inputWrapper}>
             <input 
               type="search" 
@@ -79,6 +86,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
               <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
             </button>
           </div>
+         
+          {firstName && lastName && (
+            <p className={styles.welcomeMessage}>Bienvenido: {firstName} {lastName}</p>
+          )}
 
           <Link to={getRoute('home')} className={styles.logo}>
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle, una tienda de ecommerce" />
@@ -86,21 +97,30 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
 
           <div className={styles.headerActions}>
             <button className={styles.headerActionBtn} aria-label="user">
-              <IonIcon icon={personOutline} aria-hidden="true"></IonIcon>
+              {userImage ? (
+                <img src={userImage} alt="User" className={styles.userImage} />
+              ) : (
+                <IonIcon icon={personOutline} aria-hidden="true"></IonIcon>
+              )}
             </button>
+
             <button className={styles.headerActionBtn} aria-label="favourite item">
               <IonIcon icon={starOutline} aria-hidden="true"></IonIcon>
               <span className={styles.btnBadgeStar}>{wishlistCount}</span>
             </button>
+            
             <button>
-            <Link to={getRoute('summary')} className={styles.headerActionBtn} aria-label="cart item">
-              <data className={styles.btnText} value={cartCount}>
-                {formatPrice(totalPrice)}
-              </data>
-              <IonIcon icon={bagHandleOutline} aria-hidden="true"></IonIcon>
-              <span className={styles.btnBadgeCart}>{cartCount}</span>
-            </Link>
+              <Link to={getRoute('summary')} className={styles.headerActionBtn} aria-label="cart item">
+                <data className={styles.btnText} value={cartCount}>
+                  {formatPrice(totalPrice)}
+                </data>
+                <IonIcon icon={bagHandleOutline} aria-hidden="true"></IonIcon>
+                <span className={styles.btnBadgeCart}>{cartCount}</span>
+              </Link>
             </button>
+
+            
+            <button onClick={handleLogout} className={styles.logoutButton}>Cerrar sesión</button>
           </div>
 
           <nav className={styles.navbar}>
