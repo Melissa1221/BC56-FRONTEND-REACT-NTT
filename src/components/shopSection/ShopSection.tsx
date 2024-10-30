@@ -35,7 +35,7 @@ const ShopSection: FC<ShopSectionProps> = ({
   }, [onAddToCart]);
 
   if (loading) {
-    return <p>Cargando...</p>; // Replace with spinner or loading indicator if desired
+    return <p>Cargando...</p>; 
   }
 
   return (
