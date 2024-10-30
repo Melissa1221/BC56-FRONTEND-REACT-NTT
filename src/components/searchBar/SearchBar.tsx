@@ -21,7 +21,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
         onChange={handleInputChange} 
       />
       <button className={styles.searchSubmit} aria-label="search">
-        <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
+        <IonIcon  icon={searchOutline} aria-hidden="true"></IonIcon>
       </button>
     </div>
   );
