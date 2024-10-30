@@ -7,6 +7,7 @@ import Main from '../../components/main/Main';
 import ShopSection from '../../components/shopSection/ShopSection';
 import { useShop, useShopActions } from '../../shared/context/ShopContext';
 import usePagination from '../../shared/hooks/usePagination';
+import withAuth from '../../hoc/withAuth';
 
 const Home = () => {
   const { state } = useShop();
@@ -61,4 +62,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default withAuth(Home);
