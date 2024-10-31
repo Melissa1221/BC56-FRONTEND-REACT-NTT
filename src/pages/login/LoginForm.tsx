@@ -85,8 +85,9 @@ const LoginForm: FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm}>
       <div className={styles.formGroup}>
-        <label>Usuario</label>
+        <label htmlFor="username">Usuario</label>
         <input
+          id="username"
           type="text"
           {...register('username', { 
             required: 'Este campo es obligatorio',
@@ -103,8 +104,9 @@ const LoginForm: FC = () => {
       </div>
 
       <div className={styles.formGroup}>
-        <label>Contraseña</label>
+        <label htmlFor="password">Contraseña</label>
         <input
+          id="password"
           type="password"
           {...register('password', { 
             required: 'Este campo es obligatorio',

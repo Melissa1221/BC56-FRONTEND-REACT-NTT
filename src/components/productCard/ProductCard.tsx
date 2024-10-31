@@ -5,7 +5,7 @@ import { ProductCardProps } from './productCard.domain';
 import styles from './ProductCard.module.css';
 
 const ProductCard: FC<ProductCardProps> = ({ product, onAddToCart, onAddToWishlist }) => {
-  const discountedPrice = product.price - (product.price * product.discountPercentage / 100);
+  const discountedPrice = (product.price - (product.price * product.discountPercentage / 100)).toFixed(2);
   const filledStars = Math.floor(product.rating);
   const hasHalfStar = product.rating % 1 !== 0;
 
@@ -44,8 +44,8 @@ const ProductCard: FC<ProductCardProps> = ({ product, onAddToCart, onAddToWishli
       </div>
       <div className={styles.cardContent}>
         <div className={styles.price}>
-          <del data-testid="original-price">{product.price}</del>
-          <span data-testid="discounted-price">{discountedPrice}</span>
+          <del data-testid="original-price">${product.price.toFixed(2)}</del>
+          <span data-testid="discounted-price">${discountedPrice}</span>
         </div>
         <h3 className={styles.cardTitle} data-testid="product-title">{product.title}</h3>
         
