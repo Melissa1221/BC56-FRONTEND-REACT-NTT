@@ -4,15 +4,17 @@
 
 @media (min-width: 700px) {
   .inputWrapper {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
-    width: 300px;
     width: 100%;
+    max-width: 300px;
   }
 
   .searchField {
     width: 100%;
-    padding: 10px 40px 10px 15px;
+    padding: 10px 15px;
+    padding-right: 40px; /* Espacio para el icono de búsqueda */
     border: 1px solid var(--cultured-1);
     border-radius: var(--radius-3);
     font-size: var(--fs-7);
@@ -30,14 +32,13 @@
   .searchSubmit {
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 10px;
     transform: translateY(-50%);
     background: none;
     border: none;
     font-size: 20px;
     color: var(--black);
     cursor: pointer;
-    width: 100%;
   }
 
   .searchSubmit ion-icon {

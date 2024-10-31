@@ -290,3 +290,22 @@
     transform: translateY(0);
   }
 }
+
+
+
+.hideOnMobile {
+  display: none;
+}
+
+.showOnMobile {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hideOnMobile {
+    display: block;
+  }
+  .showOnMobile {
+    display: none;
+  }
+}

@@ -3,6 +3,7 @@ import { IonIcon } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import { ROUTES } from '../shared/routes';
 import styles from './Sidebar.module.css';
+import { useUser } from '../shared/context/UserContext';
 
 interface NavItem {
   href: string;
@@ -18,7 +19,7 @@ const navItems: NavItem[] = [
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { firstName, lastName } = useUser();
   const toggleSidebar = () => {
     setIsOpen(prev => !prev);
   };
@@ -45,6 +46,13 @@ const Sidebar: React.FC = () => {
             <IonIcon icon={closeOutline} />
           </button>
         </div>
+
+        {firstName && lastName && (
+              <p className={`${styles.welcomeMessage} ${styles.showOnMobile}`}>
+                Bienvenido: {firstName} {lastName}
+              </p>
+            )}
+        
 
         {isOpen && (
           <ul className={styles.navbarList}>

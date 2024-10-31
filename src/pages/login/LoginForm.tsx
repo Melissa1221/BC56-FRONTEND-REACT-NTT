@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
@@ -6,74 +6,79 @@ import styles from './css/LoginForm.module.css';
 import { colorsAlertLogin } from '../../shared/utils';
 import { useUser } from '../../shared/context/UserContext';
 import { getRoute } from '../../shared/routes';
+import { loginService } from '../../services/authService';
 
 interface LoginFormInputs {
   username: string;
   password: string;
 }
 
-const LoginForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+const LoginForm: FC = () => {
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors } 
+  } = useForm<LoginFormInputs>();
+  
   const { setUser } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = sessionStorage.getItem('accessToken');
-    if (token) {
+    const initializeUserFromSession = () => {
+      const token = sessionStorage.getItem('accessToken');
+      if (!token) return;
+
       const firstName = sessionStorage.getItem('firstName');
       const lastName = sessionStorage.getItem('lastName');
       const image = sessionStorage.getItem('userImage');
 
       if (firstName && lastName) {
         setUser(firstName, lastName, image || '');
-
       }
+    };
+
+    initializeUserFromSession();
+  }, [setUser]);
+
+  const showSuccessAlert = async () => {
+    const alertResult = await Swal.fire({
+      icon: 'success',
+      title: '¡Inicio de sesión exitoso!',
+      text: 'Bienvenido, has iniciado sesión correctamente.',
+      confirmButtonColor: colorsAlertLogin.success,
+      confirmButtonText: 'Aceptar',
+      allowOutsideClick: false,
+      allowEscapeKey: false
+    });
+
+    if (alertResult.isConfirmed) {
+      navigate(getRoute('home'), { replace: true });
     }
-  }, [navigate, setUser]);
+  };
+
+  const showErrorAlert = (errorMessage: string = 'Ocurrió un error. Inténtalo de nuevo.') => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error de autenticación',
+      text: errorMessage,
+      confirmButtonColor: colorsAlertLogin.error,
+      confirmButtonText: 'Cerrar'
+    });
+  };
 
   const onSubmit = async (data: LoginFormInputs) => {
     try {
-      const response = await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, expiresInMins: 30 }),
-      });
+      const userData = await loginService(data.username, data.password);
       
-      const userData = await response.json();
+      setUser(
+        userData.firstName || '',
+        userData.lastName || '',
+        userData.image || ''
+      );
 
-      if (response.ok) {
-
-        sessionStorage.setItem('accessToken', userData.token);
-        sessionStorage.setItem('firstName', userData.firstName);
-        sessionStorage.setItem('lastName', userData.lastName);
-        sessionStorage.setItem('userImage', userData.image);
-
-        setUser(userData.firstName, userData.lastName, userData.image);
-
-        const alertResult = await Swal.fire({
-          icon: 'success',
-          title: '¡Inicio de sesión exitoso!',
-          text: 'Bienvenido, has iniciado sesión correctamente.',
-          confirmButtonColor: colorsAlertLogin.success,
-          confirmButtonText: 'Aceptar',
-          allowOutsideClick: false,
-          allowEscapeKey: false
-        });
-
-        if (alertResult.isConfirmed) {
-          navigate(getRoute('home'), { replace: true });
-        }
-      } else {
-        throw new Error(userData.message || 'Credenciales incorrectas.');
-      }
-    } catch {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error de autenticación',
-        text: 'Ocurrió un error. Inténtalo de nuevo.',
-        confirmButtonColor: colorsAlertLogin.error,
-        confirmButtonText: 'Cerrar'
-      });
+      await showSuccessAlert();
+    } catch (error) {
+      showErrorAlert(error instanceof Error ? error.message : undefined);
     }
   };
 
@@ -83,20 +88,36 @@ const LoginForm: React.FC = () => {
         <label>Usuario</label>
         <input
           type="text"
-          {...register('username', { required: 'Este campo es obligatorio' })}
+          {...register('username', { 
+            required: 'Este campo es obligatorio',
+            minLength: {
+              value: 3,
+              message: 'El usuario debe tener al menos 3 caracteres'
+            }
+          })}
           className={styles.input}
         />
-        {errors.username && <p className={styles.error}>{errors.username.message}</p>}
+        {errors.username && (
+          <p className={styles.error}>{errors.username.message}</p>
+        )}
       </div>
 
       <div className={styles.formGroup}>
         <label>Contraseña</label>
         <input
           type="password"
-          {...register('password', { required: 'Este campo es obligatorio' })}
+          {...register('password', { 
+            required: 'Este campo es obligatorio',
+            minLength: {
+              value: 6,
+              message: 'La contraseña debe tener al menos 6 caracteres'
+            }
+          })}
           className={styles.input}
         />
-        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+        {errors.password && (
+          <p className={styles.error}>{errors.password.message}</p>
+        )}
       </div>
 
       <button type="submit" className={styles.loginButton}>

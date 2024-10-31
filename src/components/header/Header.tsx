@@ -1,12 +1,13 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
-import { bagHandleOutline, personOutline, searchOutline, starOutline } from 'ionicons/icons';
+import { bagHandleOutline, personOutline, starOutline } from 'ionicons/icons';
 import Sidebar from '../../layout/Sidebar';
 import { Link, useNavigate } from 'react-router-dom';
 import { getRoute } from '../../shared/routes';
 import { LinksNavbar, HeaderProps } from './header.domain';
 import styles from './Header.module.css';
 import { useUser } from '../../shared/context/UserContext';
+import SearchBar from '../searchBar/SearchBar';
 
 const linksNavbar: LinksNavbar[] = [
   {
@@ -59,10 +60,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
   const { firstName, lastName, userImage, logout } = useUser(); 
   const navigate = useNavigate();
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = event.target.value;
-    onSearch(searchTerm); 
-  };
+  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const searchTerm = event.target.value;
+  //   onSearch(searchTerm); 
+  // };
 
   const handleLogout = () => {
     logout();
@@ -74,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
       <div className={styles.headerTop}>
         <div className={styles.container}>
           <Sidebar />
-          <div className={styles.inputWrapper}>
+          {/* <div className={styles.inputWrapper}>
             <input 
               type="search" 
               name="search" 
@@ -85,17 +86,21 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartCount, wishlistCount, tot
             <button className={styles.searchSubmit} aria-label="search">
               <IonIcon icon={searchOutline} aria-hidden="true"></IonIcon>
             </button>
-          </div>
+          </div> */}
+          <SearchBar onSearch={onSearch} />
          
           {firstName && lastName && (
-            <p className={styles.welcomeMessage}>Bienvenido: {firstName} {lastName}</p>
+            <p className={`${styles.welcomeMessage} ${styles.hideOnMobile}`}>
+              Bienvenido: {firstName} {lastName}
+            </p>
           )}
+
 
           <Link to={getRoute('home')} className={styles.logo}>
             <img src="./assets/images/logo.png" width="179" height="26" alt="Logo de Borcelle, una tienda de ecommerce" />
           </Link>
 
-          <div className={styles.headerActions}>
+          <div className={styles.headerActions } >
             <button className={styles.headerActionBtn} aria-label="user">
               {userImage ? (
                 <img src={userImage} alt="User" className={styles.userImage} />
