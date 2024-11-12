@@ -2,6 +2,11 @@
 
 Este proyecto es una aplicación **Ecommerce** desarrollada utilizando **React**, **TypeScript**, **Vite**, y **CSS**. Permite consumir productos desde una API (`dummyjson.com`) y mostrarlos en diferentes categorías, con funciones como búsqueda, filtrado por categorías, manejo de carrito de compras, y lista de deseos.
 
+## Inicio de sesión
+Puedes ingresar con las siguientes credenciales
+- **username**: emilys,
+- **password**: emilyspass,
+
 ## Tecnologías Utilizadas
 
 - **React**: Framework para construir interfaces de usuario y gestionar el estado.
