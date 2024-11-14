@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useCallback } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import ProductCard from '../productCard/ProductCard';
 import Select from '../select/Select';
 import { Product, Category } from '../../interfaces';

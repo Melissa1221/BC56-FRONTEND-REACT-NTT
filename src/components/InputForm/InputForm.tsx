@@ -15,7 +15,6 @@ interface InputFormProps {
 }
 
 const InputForm: FC<InputFormProps> = ({
-  id,
   label,
   name,
   type,
@@ -24,7 +23,6 @@ const InputForm: FC<InputFormProps> = ({
   onBlur,
   error,
   options,
-  touched
 }) => {
   return (
     <div className={styles.formGroup}>

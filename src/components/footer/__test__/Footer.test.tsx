@@ -12,7 +12,7 @@ describe('Footer Component', () => {
     render(<Footer />);
     const socialIcons = [logoTwitter, logoFacebook, logoInstagram, logoYoutube];
 
-    socialIcons.forEach((icon, index) => {
+    socialIcons.forEach((_icon, index) => {
       const socialLink = screen.getAllByRole('link')[index];
       expect(socialLink).toBeInTheDocument();
       expect(socialLink.querySelector('ion-icon')).toBeInTheDocument();
